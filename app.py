@@ -2,6 +2,7 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 from flask_cors import CORS
+import json
 
 # Inisiasi object flask
 app = Flask(__name__)
@@ -19,7 +20,14 @@ identitas = {}
 
 
 class ContohResource(Resource):
+    def write_json(new_data, filename='data.json'):
+        with open(filename, 'r+') as file:
+            file_data = json.load(file)
+            file_data.update(new_data)
+            file.seek(0)
+            json.dump(file_data, file, indent=4)
     # Method GET dan POST
+
     def get(self):
         # response = {"msg": "Haahahaahah"}
 
@@ -28,8 +36,8 @@ class ContohResource(Resource):
     def post(self):
         nama = request.form["nama"]
         umur = request.form["umur"]
-        identitas["nama"] = nama
-        identitas["umur"] = umur
+        newData = {"nama": nama, "umur": umur}
+        write_json(newData)
         response = {"msg": "data berhasil dimasukan"}
         return response
 
