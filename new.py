@@ -18,8 +18,6 @@ identitas = {}
 newData = {}
 newData['people'] = []
 
-# Membuat class Resource
-
 
 def write_json(new_data, filename='data.json'):
     with open(filename, 'r+') as file:
@@ -28,14 +26,18 @@ def write_json(new_data, filename='data.json'):
         file.seek(0)
         json.dump(file_data, file)
 
+# Membuat class Resource
+
 
 class ContohResource(Resource):
     # Method GET dan POST
 
     def get(self):
         # response = {"msg": "Haahahaahah"}
+        with open('data.json') as json_file:
+            data = json.load(json_file)
 
-        return identitas
+        return data
 
     def post(self):
         nama = request.form["nama"]

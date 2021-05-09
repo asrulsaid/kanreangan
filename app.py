@@ -15,28 +15,34 @@ CORS(app)
 
 # Inisiasi variabel kosong bertipe Dictionary
 identitas = {}
+newData = {}
+newData['people'] = []
+
+
+def write_json(new_data, filename='data.json'):
+    with open(filename, 'r+') as file:
+        file_data = json.load(file)
+        file_data.update(new_data)
+        file.seek(0)
+        json.dump(file_data, file)
 
 # Membuat class Resource
 
 
 class ContohResource(Resource):
-    def write_json(new_data, filename='data.json'):
-        with open(filename, 'r+') as file:
-            file_data = json.load(file)
-            file_data.update(new_data)
-            file.seek(0)
-            json.dump(file_data, file, indent=4)
     # Method GET dan POST
 
     def get(self):
         # response = {"msg": "Haahahaahah"}
+        with open('data.json') as json_file:
+            data = json.load(json_file)
 
-        return identitas
+        return data
 
     def post(self):
         nama = request.form["nama"]
         umur = request.form["umur"]
-        newData = {"nama": nama, "umur": umur}
+        newData['people'].append({"nama": nama, "umur": umur})
         write_json(newData)
         response = {"msg": "data berhasil dimasukan"}
         return response
