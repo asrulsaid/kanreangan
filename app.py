@@ -28,8 +28,8 @@ class ContohResource(Resource):
     def post(self):
         nama = request.form["nama"]
         umur = request.form["umur"]
-        identitas["nama"] = nama
-        identitas["umur"] = umur
+        identitas["nama"] += nama
+        identitas["umur"] += umur
         response = {"msg": "data berhasil dimasukan"}
         return response
 
