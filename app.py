@@ -97,4 +97,4 @@ def add_food():
     return "Data Berhasil ditambahkan"
 
 
-app.run(port=5005)
+app.run(port=5000)
