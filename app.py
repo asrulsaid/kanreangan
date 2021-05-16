@@ -1,5 +1,5 @@
 from sqlite3.dbapi2 import connect, paramstyle
-import flask import Flask
+from flask import Flask
 from flask import request, jsonify
 import sqlite3
 
