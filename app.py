@@ -1,11 +1,11 @@
 from sqlite3.dbapi2 import connect, paramstyle
-import flask
+import flask import Flask
 from flask import request, jsonify
 import sqlite3
 
 from flask import json
 
-app = flask.Flask(__name__)
+app = Flask(__name__)
 app.config["DEBUG"] = True
 
 
@@ -97,4 +97,4 @@ def add_food():
     return "Data Berhasil ditambahkan"
 
 
-app.run()
+app.run(port=5005)
